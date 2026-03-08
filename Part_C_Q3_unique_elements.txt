@@ -1,0 +1,13 @@
+Why this happens:
+The original code uses the set difference operator (-). In Python, set(a) - set(b) only calculates elements that are present in a but not in b. It completely ignores elements that are unique to b (like 4 and 5), resulting in the incomplete list [1, 2]. 
+Fixed Function:
+To capture elements unique to each list (all elements that appear in one but not both), you must use the symmetric difference operator (^).
+python
+def unique_to_each(a, b):
+    # The ^ operator finds elements in either a or b, but not both
+    result = set(a) ^ set(b)
+    return list(result)
+
+Verification:
+Input: [1, 2, 3], [3, 4, 5]
+Result: [1, 2, 4, 5]

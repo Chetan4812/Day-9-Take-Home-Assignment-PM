@@ -1,0 +1,19 @@
+Consider:
+
+t = ([1,2], [3,4])
+Question:
+
+Can we run:
+
+t[0][0] = 99
+Explain:
+
+Why it works or fails
+What this reveals about tuple immutability
+
+
+---->  It works, the operation succeeds because of the difference between the tuple's structure and its contents. As tuples are collection of references to two list objects. The tuple itself is immutable, meaning we cannot replace these references (e.g., we cannot do t[0] = [10, 20]). But lists are mutable objects. When we run t[0][0] = 99, we are not changing the tuple, modifying the internal state of the list object that the tuple happens to be holding. 
+This reveals that tuple immutability is "shallow": 
+(Constant References)A tuple guarantees that the objects it contains will remain the same objects in the same order for its entire lifetime.
+(Mutable Members) If a tuple contains mutable objects (like lists or dictionaries), those objects can still be changed internally without violating the tuple's own immutability.
+Thus the "container" is locked, but the "items inside the container" might not be.
